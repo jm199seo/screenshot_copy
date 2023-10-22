@@ -1,18 +1,18 @@
 package cmd
 
 import (
-	"context"
 	"fmt"
 
 	screenshotcopy "github.com/jm199seo/screenshot_copy/internal/screenshot_copy"
 	"github.com/spf13/cobra"
 )
 
-func runScreenshotCopy(ctx context.Context) *cobra.Command {
+func runScreenshotCopy() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "screenshot-copy",
 		Short: "sc",
 		RunE: func(cmd *cobra.Command, args []string) error {
+			ctx := cmd.Context()
 			cli, cleanup, err := screenshotcopy.NewClient(ctx)
 			if err != nil {
 				return err
